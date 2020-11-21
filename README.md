@@ -46,7 +46,7 @@ Talk about how the fade works, here....
 ### Evidence
 [The link to my arduino create fade](https://create.arduino.cc/editor/ayates67/b139f68a-321a-49c1-83cd-8a7b8c837c92)
 ### Images
-<img src="VID_20201120_234720.mkv"
+<img src="VID_20201120_234720.mkv">
 ### Reflection
 THis assignment was really tough but it taught me how to use arduino create. I learned the basics and learned how to build a circuit. I also learned that I need to work smarter and not harder. Sometimes I do things the hard way and then mess up.
 ## Hello_LCD
