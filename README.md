@@ -49,23 +49,43 @@ Talk about how the fade works, here....
 <img src="VID_20201120_234720.mkv">
 ### Reflection
 THis assignment was really tough but it taught me how to use arduino create. I learned the basics and learned how to build a circuit. I also learned that I need to work smarter and not harder. Sometimes I do things the hard way and then mess up.
-## Hello_LCD
+## Finite LED Blinker
 
 ### Description & Code
-Description goes here
+
+In this assignment I made an led blink 5 times and then stop and count on the serial monitor.
+
 
 Here's how you make code look like code:
 
 ```C++
-Code goes here
-```
-Talk about how the code works, here....
+int counter = 0;
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  Serial.begin(9600);
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  if (counter < 5){
+  Serial.println(counter + 1);
+  digitalWrite(LED_BUILTIN, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(100);                       // wait for a second
+  digitalWrite(LED_BUILTIN, LOW);    // turn the LED off by making the voltage LOW
+  delay(1000);                       // wait for a second
+  counter = counter + 1;}
+}
+
+```The serial println made the counter show up on the serial monitor. The if statement made it so if the counter was < 5 then the computer should run the loop again.
 
 ### Evidence
-link goes here
+[Link to my sketch](https://create.arduino.cc/editor/ayates67/deb3231b-3ad6-4168-be88-0777e440ba62/preview)
 
 ### Images
-draw it yourself, take a picture, make a fritzing, whatever you want to EFFECTIVELY communicate how its put together.
+<img src="IMG_1509.MOV">
 
 ### Reflection
-
+This assignment challenged me alot. I learned about counters and if statement to make the Led blink five time. With the help of my Dad, I figured out how to make an arduino blink and use a counter in serial monitor.
