@@ -89,3 +89,46 @@ void loop() {
 
 ### Reflection
 This assignment challenged me alot. I learned about counters and if statement to make the Led blink five time. With the help of my Dad, I figured out how to make an arduino blink and use a counter in serial monitor.
+
+## Finite LED Blinker
+
+### Description & Code
+
+In this assignment I made an led blink faster every second until in got to 100.
+
+
+Here's how you make code look like code:
+
+```C++
+int counter = 0;
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(ledPin, OUTPUT);
+  Serial.begin(9600);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  Serial.println(delayVar);
+  digitalWrite(ledPin, HIGH);   // turn the LED on (HIGH is the voltage level)
+  delay(delayVar);                       // wait for a second
+  digitalWrite(ledPin, LOW);    // turn the LED off by making the voltage LOW
+  delay(delayVar);                       // wait for a second
+  if(delayVar > 100){
+  delayVar = delayVar - 100;}
+  
+
+  
+}
+```The serial println made the counter show up on the serial monitor. The if statement made it so if the counter was < 5 then the computer should run the loop again.
+
+### Evidence
+[Link to my sketch](https://create.arduino.cc/editor/ayates67/b0792fc8-d174-4494-8bf7-7c2a47c18c06/preview)
+
+### Images
+I couldn't figure out how to add a video to github.
+
+### Reflection
+In this assignment I made an LED blink faster every second. It was very hard but I pushed through and get trying. I figured out that I needed the variable"delayvar" to make it delay.
