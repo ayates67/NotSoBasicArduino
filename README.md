@@ -90,7 +90,7 @@ void loop() {
 ### Reflection
 This assignment challenged me alot. I learned about counters and if statement to make the Led blink five time. With the help of my Dad, I figured out how to make an arduino blink and use a counter in serial monitor.
 
-## Finite LED Blinker
+## Arduino Assignment
 
 ### Description & Code
 
@@ -132,3 +132,200 @@ I couldn't figure out how to add a video to github.
 
 ### Reflection
 In this assignment I made an LED blink faster every second. It was very hard but I pushed through and get trying. I figured out that I needed the variable"delayvar" to make it delay.
+
+## Hello Functions
+
+### Description & Code
+In this assignment I made the LED blink depending on how far the ultrasonic sensor detected.
+
+
+Here's how you make code look like code:
+
+```// ---------------------------------------------------------------- //
+// Arduino Ultrasoninc Sensor HC-SR04
+// Re-writed by Arbi Abdul Jabbaar
+// Using Arduino IDE 1.8.7
+// Using HC-SR04 Module
+// Tested on 17 September 2019
+// ---------------------------------------------------------------- //
+
+#define echoPin 2 // attach pin D2 Arduino to pin Echo of HC-SR04
+#define trigPin 3 //attach pin D3 Arduino to pin Trig of HC-SR04
+
+// defines variables
+long duration; // variable for the duration of sound wave travel
+int distance; // variable for the distance measurement
+int pin = 8;
+int LED = 8;
+
+
+void setup() {
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+  pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+  pinMode(pin, OUTPUT);
+  pinMode(LED, INPUT);
+  Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
+  Serial.println("Ultrasonic Sensor HC-SR04 Test"); // print some text in Serial Monitor
+  Serial.println("with Arduino UNO R3");
+}
+void loop() {
+  // Clears the trigPin condition
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+  // Calculating the distance
+  distance = duration * 0.034 / 2; // Speed of sound wave divided by 2 (go and back)
+  // Displays the distance on the Serial Monitor
+  if (distance < 100){digitalWrite(LED, OUTPUT);}
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  delay(1000);
+}
+
+```
+### Evidence
+[Link to my sketch](https://create.arduino.cc/editor/ayates67/9e4d879e-5878-4f52-abf6-4be0e9ec4e52)
+
+### Images
+<img src="IMG_20201218_092329.jpg">
+
+### Reflection
+In this assignment I made an LED blink when ever the ultra sonic sensor sensed a certain distance. This took me a while but I figured out where and how an if statement worked and got the assignment done.
+
+## New Ping
+
+### Description & Code
+In this asignment I used the new ping library to make an LED get dimmer depend on the distance that the ultra sonic sensor read.
+Here's how you make code look like code:
+
+```// ---------------------------------------------------------------- //
+// Arduino Ultrasoninc Sensor HC-SR04
+// Re-writed by Arbi Abdul Jabbaar
+// Using Arduino IDE 1.8.7
+// Using HC-SR04 Module
+// Tested on 17 September 2019
+// ---------------------------------------------------------------- //
+
+#define echoPin 2 // attach pin D2 Arduino to pin Echo of HC-SR04
+#define trigPin 3 //attach pin D3 Arduino to pin Trig of HC-SR04
+
+// defines variables
+long duration; // variable for the duration of sound wave travel
+int distance; // variable for the distance measurement
+int pin = 9;
+int LED = 9;
+#include <NewPing.h>
+ 
+#define TRIGGER_PIN 3
+#define ECHO_PIN 2
+#define MAX_DISTANCE 200
+ 
+NewPing myHCSR04(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE);
+
+
+void setup() {
+  pinMode(trigPin, OUTPUT); // Sets the trigPin as an OUTPUT
+  pinMode(echoPin, INPUT); // Sets the echoPin as an INPUT
+  pinMode(pin, OUTPUT);
+  pinMode(LED, INPUT);
+  Serial.begin(9600); // // Serial Communication is starting with 9600 of baudrate speed
+  Serial.println("Ultrasonic Sensor HC-SR04 Test"); // print some text in Serial Monitor
+  Serial.println("with Arduino UNO R3");
+}
+void loop() {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigPin HIGH (ACTIVE) for 10 microseconds
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+  // Reads the echoPin, returns the sound wave travel time in microseconds
+  duration = pulseIn(echoPin, HIGH);
+  // Calculating the distance
+  distance = (myHCSR04.ping_cm());
+  // Displays the distance on the Serial Monitor
+  Serial.print("Distance: ");
+  Serial.print(distance);
+  Serial.println(" cm");
+  analogWrite(LED, 7* distance);
+  
+}
+
+```
+### Evidence
+[Link to my sketch](https://create.arduino.cc/editor/ayates67/fb65c71b-3a2f-47d4-a7bb-9317cee1535c)
+
+### Images
+<img src="IMG_20201218_092329.jpg">
+
+### Reflection
+In this assignment I made an LED get ligher and dimmer when ever the ultra sonic sensor sensed a certain distance. This took me a while but I finally figured out how to used new ping after many errors and downloads.
+
+## Photoresister
+
+### Description & Code
+In this assignment I made a night light that turns on when it's dark and off when it's light. I used a photoresister to detect the light and a basic led for my light. I learned how the lines on the resisters work also.
+Here's how you make code look like code:
+
+```/*
+  Blink
+
+  Turns an LED on for one second, then off for one second, repeatedly.
+
+  Most Arduinos have an on-board LED you can control. On the UNO, MEGA and ZERO
+  it is attached to digital pin 13, on MKR1000 on pin 6. LED_BUILTIN is set to
+  the correct LED pin independent of which board is used.
+  If you want to know what pin the on-board LED is connected to on your Arduino
+  model, check the Technical Specs of your board at:
+  https://www.arduino.cc/en/Main/Products
+
+  modified 8 May 2014
+  by Scott Fitzgerald
+  modified 2 Sep 2016
+  by Arturo Guadalupi
+  modified 8 Sep 2016
+  by Colby Newman
+
+  This example code is in the public domain.
+
+  http://www.arduino.cc/en/Tutorial/Blink
+*/
+int analogPin = A0;
+int val = 0;
+int LED_BUILTI = 8;
+
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  Serial.begin(9600);
+  pinMode(LED_BUILTIN, OUTPUT);
+  
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  Serial.println();
+  val = analogRead(analogPin);
+  Serial.println(val);
+  if (val < 100){digitalWrite(LED_BUILTI, HIGH);}
+  else if (val > 100){digitalWrite(LED_BUILTI, LOW);}
+  delay(1000);                       // wait for a second
+  
+}
+
+
+```
+### Evidence
+[Link to my sketch](https://create.arduino.cc/editor/ayates67/44e0fd1b-70b6-4da1-82df-ecfd25977825)
+
+### Images
+<img src="the pic of duke.PNG">
+
+### Reflection
+In this assignment I made an LED turn on when the light went off and turn off when the lights turn on. It is basically like a night light. This assignment was a little easier than new ping but it did have its challenges. It was hard tomunderstand how to use analog for me.
